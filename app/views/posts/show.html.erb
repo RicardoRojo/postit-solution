@@ -1,0 +1,14 @@
+<h3>Show a single post</h3>
+
+<%= render @post %>
+<%= render "shared/errors", error_obj: @comment %>
+<%= form_for [@post,@comment] do |f| %>
+  <%= render "shared/content_title", title: "Leave a comment" %>
+  <%= f.text_area :body %> <br/>
+  <%= f.submit "Create Comment", class:"btn btn-small btn-success" %>
+<% end %>
+
+<% if !@post.comments.empty? %>
+  <%= render "shared/content_title", title: "Comments" %>
+<% end %>
+<%= render @post.comments %>

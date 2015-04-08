@@ -1,0 +1,12 @@
+<div class="well">
+  <p><%= link_to "(Edit #{post.title})" , edit_post_path(post), class: "pull-right" %></p>
+
+  <% post.categories.each do |category| %>
+    <span class="badge"><%= category.name %> </span>
+  <% end %>
+  <h4><%= link_to post.title, post_path(post) %></h4>
+  <p>Url: <%=post.url %></p><br/>
+  <p><%=post.description %></p>
+  <p><span class="quiet">Created by: </span> <%= post.creator.username %> Created at: <%= post.created_at %> </p>
+  <p><%= link_to "#{post.comments.size} comments", post_path(post) %></p>
+</div>
