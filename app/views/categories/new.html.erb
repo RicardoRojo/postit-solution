@@ -2,7 +2,7 @@
 <%= render "shared/errors", error_obj: @category %>
 <div class="well span8">
   <%= form_for @category do |f| %>
-    <div class="fieldset">
+    <div class="control-group">
       <%= f.label :name %>
       <%= f.text_field :name %>
     </div>

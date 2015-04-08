@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    
+
   end
 
   def new
@@ -16,6 +16,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    binding.pry
     @post = Post.new(post_params)
     @post.creator = User.last #pte of usermodel integration
 
@@ -33,9 +34,11 @@ class PostsController < ApplicationController
   end
 
   def update
+    binding.pry
     if @post.update(post_params)
       flash[:notice] = "your post was updated"
       redirect_to post_path
+
     else
       render :edit
     end
@@ -45,7 +48,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title,:url,:description)
+    params.require(:post).permit(:title,:url,:description, category_ids: [])
   end
 
   def set_post
