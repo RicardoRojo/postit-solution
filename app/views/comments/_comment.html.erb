@@ -1,5 +1,5 @@
 
 <div class="span8 well">
   <p><%= comment.body %> </p>
-  <p class="quiet">Created at: <%= comment.created_at %> by <%= comment.creator.username %></p>
+  <p class="quiet">Created at: <%= format_date_time(comment.created_at) %> by <%= comment.creator.username %></p>
 </div>
