@@ -1,6 +1,7 @@
 <div class="well">
-  <p><%= link_to "(Edit #{post.title})" , edit_post_path(post), class: "pull-right" %></p>
-
+  <% if logged_in? %>
+    <p><%= link_to "(Edit #{post.title})" , edit_post_path(post), class: "pull-right" %></p>
+  <% end %>
   <% post.categories.each do |category| %>
     <span class="badge"><%= category.name %> </span>
   <% end %>

@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :require_user
+  
   def create
     binding.pry
     @post = Post.find(params[:post_id])
