@@ -17,9 +17,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    binding.pry
     @post = Post.new(post_params)
-    @post.creator = User.last #pte of usermodel integration
+    @post.creator = current_user
 
     if @post.save
       flash[:notice] = "Your post was created"
@@ -27,7 +26,6 @@ class PostsController < ApplicationController
     else
       render :new
     end
-    binding.pry
 
   end
 
