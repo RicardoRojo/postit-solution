@@ -33,11 +33,10 @@ class PostsController < ApplicationController
   end
 
   def update
-    binding.pry
+
     if @post.update(post_params)
       flash[:notice] = "your post was updated"
       redirect_to post_path
-
     else
       render :edit
     end

@@ -8,6 +8,7 @@
   <h4><%= link_to post.title, post_path(post) %></h4>
   <p>Url: <%= link_to post.url, fix_url(post.url) %></p><br/>
   <p><%=post.description %></p>
-  <p><span class="quiet">Created by: </span> <%= post.creator.username %> Created at: <%= format_date_time(post.created_at) %> </p>
+  <p><span class="quiet">Created by: </span> <%= link_to post.creator.username, user_path(post.creator) %> 
+    Created at: <%= format_date_time(post.created_at) %> </p>
   <p><%= link_to "#{post.comments.size} comments", post_path(post) %></p>
 </div>
