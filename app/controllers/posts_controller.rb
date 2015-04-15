@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :require_user, except: [:index, :show]
   
   def index
-    @posts = Post.all
+    @posts = Post.includes(:comments,:creator)
   end
 
   def show

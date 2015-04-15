@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   before_action :user_editable, only:[:edit]
 
   def show
-    
   end
 
   def new
