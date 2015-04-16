@@ -1,26 +1,29 @@
-<div class="well span0">
-  <%= link_to vote_post_path(post, vote: true), method: :post do %>
-    <i class="icon-arrow-up"></i>
-  <% end %>
-  <br/>
-  <%= post.total_votes == 1 ? "1 vote " : "#{post.total_votes} votes "%> 
-  <br/>
-  <%= link_to vote_post_path(post, vote: false), method: :post do %>
-    <i class="icon-arrow-down"></i>
-  <% end %>
-</div>
-
-<div class="well span9">
+<div class="row" %>
   <% if logged_in? %>
-    <p><%= link_to "(Edit #{post.title})" , edit_post_path(post), class: "pull-right" %></p>
+    <div class="well span0 text-center">
+      <%= link_to vote_post_path(post, vote: true), method: :post do %>
+        <i class="icon-arrow-up"></i>
+      <% end %>
+      <br/>
+      <%= post.total_votes == 1 ? "1 vote " : "#{post.total_votes} votes "%> 
+      <br/>
+      <%= link_to vote_post_path(post, vote: false), method: :post do %>
+        <i class="icon-arrow-down"></i>
+      <% end %>
+    </div>
   <% end %>
-  <% post.categories.each do |category| %>
-    <span class="badge"><%= category.name %> </span>
-  <% end %>
-  <h4><%= link_to post.title, post_path(post) %></h4>
-  <p>Url: <%= link_to post.url, fix_url(post.url) %></p><br/>
-  <p><%=post.description %></p>
-  <p><span class="quiet">Created by: </span> <%= link_to post.creator.username, user_path(post.creator) %> 
-    Created at: <%= format_date_time(post.created_at) %> </p>
-  <p><%= link_to "#{post.comments.size} comments", post_path(post) %></p>
+  <div class="well span8">
+    <% if logged_in? %>
+      <p><%= link_to "(Edit #{post.title})" , edit_post_path(post), class: "pull-right" %></p>
+    <% end %>
+    <% post.categories.each do |category| %>
+      <span class="badge"><%= category.name %> </span>
+    <% end %>
+    <h4><%= link_to post.title, post_path(post) %></h4>
+    <p>Url: <%= link_to post.url, fix_url(post.url) %></p><br/>
+    <p><%=post.description %></p>
+    <p><span class="quiet">Created by: </span> <%= link_to post.creator.username, user_path(post.creator) %> 
+      Created at: <%= format_date_time(post.created_at) %> </p>
+    <p><%= link_to "#{post.comments.size} comments", post_path(post) %></p>
+  </div>
 </div>
