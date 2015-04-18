@@ -46,15 +46,11 @@ class PostsController < ApplicationController
   def vote
     vote = Vote.create(user: current_user, vote: params[:vote], voteable: @post)
 
-    if vote.valid?
-      flash[:notice] = "Thank you for voting"
-    else
-      flash[:error] = "Can only vote once"
+    respond_to do |format|
+      format.html {if vote.valid?; flash[:notice] = "Thanks for voting"; else; "You can vote only once"; end; redirect_to :back}
+      format.js
     end
-
-    redirect_to :back
   end
-
   private
 
   def post_params

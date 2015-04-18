@@ -1,0 +1,2 @@
+<% total_votes = @comment.total_votes %>
+$('#comment-<%= @comment.id %>-votes').html('<%= total_votes == 1 ? " 1 vote" : "#{total_votes} votes"%>')
