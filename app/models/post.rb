@@ -9,6 +9,8 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
   validates :url, presence: true
 
+  after_validation :add_slug
+
   def total_votes
     up_votes - down_votes
   end
@@ -19,5 +21,13 @@ class Post < ActiveRecord::Base
 
   def down_votes
     self.votes.where("vote = ?", false).size
+  end
+
+  def to_param
+    self.slug
+  end
+
+  def add_slug
+    self.slug = self.title.downcase.gsub(" ","-")
   end
 end
