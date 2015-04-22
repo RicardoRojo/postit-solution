@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: {minimum: 5, maximum: 20}, on: :create
 
   slugged_column :username
+
+  def admin?
+    self.role == "admin"
+  end
 end
