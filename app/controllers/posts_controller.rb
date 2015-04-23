@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :require_creator, only: [:edit,:update]
   
   def index
-    @posts = Post.includes(:comments,:creator)
+    @posts = Post.includes(:comments,:creator).reverse
   end
 
   def show

@@ -3,6 +3,9 @@ module ApplicationHelper
     url.starts_with?("http://") ? url : "http://#{url}"
   end
   def format_date_time(dt)
-    dt.strftime("%d/%m/%Y - %H:%M")
+    if logged_in? && !current_user.time_zone.blank?
+      dt = dt.in_time_zone(current_user.time_zone)
+    end
+    dt.strftime("%d/%m/%Y - %H:%M - %Z")
   end
 end
