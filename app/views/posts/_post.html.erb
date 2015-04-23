@@ -13,7 +13,7 @@
     </div>
   <% end %>
   <div class="well span8">
-    <% if logged_in? %>
+    <% if logged_in? && (current_user.admin? || current_user == post.creator) %>
       <p><%= link_to "(Edit #{post.title})" , edit_post_path(post), class: "pull-right" %></p>
     <% end %>
     <% post.categories.each do |category| %>

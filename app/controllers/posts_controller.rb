@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show,:edit,:update,:vote]
   before_action :require_user, except: [:index, :show]
+  before_action :require_creator, only: [:edit,:update]
   
   def index
     @posts = Post.includes(:comments,:creator)
@@ -58,5 +59,9 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find_by(slug: params[:id])
+  end
+
+  def require_creator
+    denied_access unless logged_in? and (current_user.admin? || current_user == @post.creator)
   end
 end
